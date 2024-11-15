@@ -28,8 +28,8 @@ func TestNewAllocation(t *testing.T) {
 		{
 			name:    "zero allocation",
 			value:   0,
-			want:    nil,
-			wantErr: ErrInvalidAllocation,
+			want:    &Allocation{value: 0},
+			wantErr: nil,
 		},
 	}
 

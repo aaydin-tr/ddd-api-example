@@ -60,9 +60,9 @@ func TestService_Create(t *testing.T) {
 		{
 			name: "validation error",
 			req: request.CreateTicketRequest{
-				Name:        "Test Ticket",
+				Name:        "",
 				Description: "Test Description",
-				Allocation:  0,
+				Allocation:  10,
 			},
 			mock:    func() {},
 			want:    nil,

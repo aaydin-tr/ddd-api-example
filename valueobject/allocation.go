@@ -14,7 +14,7 @@ type Allocation struct {
 }
 
 func NewAllocation(value int) (*Allocation, error) {
-	if value <= 0 {
+	if value < 0 {
 		return nil, ErrInvalidAllocation
 	}
 
