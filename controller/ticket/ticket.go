@@ -57,7 +57,7 @@ func (t *TicketController) FindByID(c echo.Context) error {
 		return response.NewErrorRespone(c, err, http.StatusInternalServerError)
 	}
 
-	return c.JSON(http.StatusInternalServerError, ticket)
+	return c.JSON(http.StatusOK, ticket)
 }
 
 func (t *TicketController) Purchases(c echo.Context) error {
