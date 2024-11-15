@@ -7,16 +7,16 @@ import (
 	"gorm.io/gorm"
 )
 
+var (
+	ErrNoActiveTransactionToCommit   = errors.New("no active transaction to commit")
+	ErrNoActiveTransactionToRollback = errors.New("no active transaction to rollback")
+)
+
 type TransactionManager interface {
 	Begin(ctx context.Context) (*gorm.DB, error)
 	Commit(ctx context.Context) error
 	Rollback(ctx context.Context) error
 }
-
-var (
-	ErrNoActiveTransactionToCommit   = errors.New("no active transaction to commit")
-	ErrNoActiveTransactionToRollback = errors.New("no active transaction to rollback")
-)
 
 type Transaction struct {
 	db *gorm.DB
