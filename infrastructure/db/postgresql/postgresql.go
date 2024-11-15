@@ -16,13 +16,9 @@ func NewPostgresDB(host, user, password, dbname string, port int) (*gorm.DB, err
 		return nil, fmt.Errorf("failed to connect database: %w", err)
 	}
 
-	sqlDB, err := db.DB()
+	_, err = db.DB()
 	if err != nil {
 		return nil, fmt.Errorf("failed to get database instance: %w", err)
 	}
-
-	sqlDB.SetMaxIdleConns(10)
-	sqlDB.SetMaxOpenConns(100)
-
 	return db, nil
 }
