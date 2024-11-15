@@ -9,6 +9,7 @@ import (
 	"github.com/aaydin-tr/gowit-case/interface/http/request"
 )
 
+//go:generate mockgen -destination=../../mock/service/ticket/ticket.go -package=service github.com/aaydin-tr/gowit-case/service/ticket TicketService
 type TicketService interface {
 	Create(ctx context.Context, req request.CreateTicketRequest) (*ticket.TicketDTO, error)
 	FindByID(ctx context.Context, id int) (*ticket.TicketDTO, error)
