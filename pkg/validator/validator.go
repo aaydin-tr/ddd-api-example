@@ -1,6 +1,8 @@
 package validator
 
 import (
+	"net/http"
+
 	"github.com/aaydin-tr/gowit-case/interface/http/response"
 	"github.com/go-playground/validator/v10"
 )
@@ -40,7 +42,7 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 		return &response.ErrorResponse{
 			Message: "Validation error",
 			Errors:  errors,
-			Status:  400,
+			Status:  http.StatusBadRequest,
 		}
 	}
 	return err
