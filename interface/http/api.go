@@ -14,5 +14,6 @@ func NewEchoServer(tickectController *ticket.TicketController, port string) {
 	e.POST("/ticketsuser", tickectController.Create)
 	e.GET("/tickets/:id", tickectController.FindByID)
 	e.POST("/tickets/:id/purchases", tickectController.Purchases)
+	// TODO host?
 	e.Logger.Fatal(e.Start("localhost:" + port))
 }
