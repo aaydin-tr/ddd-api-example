@@ -20,7 +20,6 @@ func main() {
 
 	if err := db.AutoMigrate(&ticket.Ticket{}); err != nil {
 		panic(err)
-
 	}
 
 	repo := repository.NewTicketRepository(db)
