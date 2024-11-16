@@ -47,7 +47,7 @@ func (t *TicketController) Create(c echo.Context) error {
 
 	ticket, err := t.service.Create(c.Request().Context(), req)
 	if err != nil {
-		return response.NewErrorRespone(c, err, http.StatusInternalServerError)
+		return response.NewErrorRespone(c, err, http.StatusUnprocessableEntity)
 	}
 
 	return c.JSON(http.StatusCreated, ticket)

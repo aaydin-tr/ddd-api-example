@@ -78,7 +78,7 @@ func TestTicketController_Create(t *testing.T) {
 			mock: func() {
 				mockService.EXPECT().Create(gomock.Any(), gomock.Any()).Return(nil, errors.New("service error"))
 			},
-			expectedCode: http.StatusInternalServerError,
+			expectedCode: http.StatusUnprocessableEntity,
 		},
 	}
 
