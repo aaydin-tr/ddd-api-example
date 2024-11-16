@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/aaydin-tr/gowit-case/domain/ticket"
 	"github.com/aaydin-tr/gowit-case/interface/http/request"
 	"github.com/aaydin-tr/gowit-case/interface/http/response"
 	service "github.com/aaydin-tr/gowit-case/service/ticket"
@@ -38,7 +39,7 @@ func (t *TicketController) Create(c echo.Context) error {
 		return response.NewErrorRespone(c, err, http.StatusInternalServerError)
 	}
 
-	return c.JSON(http.StatusOK, ticket)
+	return c.JSON(http.StatusCreated, ticket)
 }
 
 func (t *TicketController) FindByID(c echo.Context) error {
@@ -54,7 +55,7 @@ func (t *TicketController) FindByID(c echo.Context) error {
 
 	ticket, err := t.service.FindByID(c.Request().Context(), idInt)
 	if err != nil {
-		return response.NewErrorRespone(c, err, http.StatusInternalServerError)
+		return response.NewErrorRespone(c, err, http.StatusNotFound)
 	}
 
 	return c.JSON(http.StatusOK, ticket)
@@ -81,6 +82,10 @@ func (t *TicketController) Purchases(c echo.Context) error {
 	}
 
 	err = t.service.DecrementAllocation(c.Request().Context(), idInt, req.Quantity)
+	if errors.Is(err, ticket.ErrTicketNotFound) {
+		return response.NewErrorRespone(c, err, http.StatusNotFound)
+	}
+
 	if err != nil {
 		return response.NewErrorRespone(c, err, http.StatusUnprocessableEntity)
 	}

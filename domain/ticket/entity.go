@@ -14,6 +14,7 @@ var (
 	ErrAllocationIsZero       = errors.New("allocation is zero")
 	ErrNameIsRequired         = errors.New("name is required")
 	ErrDescriptionIsRequired  = errors.New("description is required")
+	ErrTicketNotFound         = errors.New("ticket not found")
 )
 
 type Ticket struct {
@@ -31,7 +32,7 @@ func (t *Ticket) TableName() string {
 }
 
 func (t *Ticket) DecrementAllocation(ctx context.Context, amount int) error {
-	if t.Allocation.GetValue() == 0 {
+	if t.Allocation.GetValue() == 0 || t.Allocation.GetValue() < amount {
 		return ErrInsufficientAllocation
 	}
 

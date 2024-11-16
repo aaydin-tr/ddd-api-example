@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"errors"
 
 	"github.com/aaydin-tr/gowit-case/domain/ticket"
 	"gorm.io/gorm"
@@ -36,6 +37,10 @@ func (r *Repository) Create(ctx context.Context, t *ticket.Ticket) error {
 func (r *Repository) FindByID(ctx context.Context, id int) (*ticket.Ticket, error) {
 	var t ticket.Ticket
 	err := r.db.WithContext(ctx).First(&t, id).Error
+	if err != nil && errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ticket.ErrTicketNotFound
+	}
+
 	if err != nil {
 		return nil, err
 	}
@@ -46,6 +51,10 @@ func (r *Repository) FindByID(ctx context.Context, id int) (*ticket.Ticket, erro
 func (r *Repository) FindByIDForUpdate(ctx context.Context, id int, tx *gorm.DB) (*ticket.Ticket, error) {
 	var t ticket.Ticket
 	err := tx.Clauses(clause.Locking{Strength: clause.LockingStrengthUpdate}).First(&t, id).Error
+	if err != nil && errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ticket.ErrTicketNotFound
+	}
+
 	if err != nil {
 		return nil, err
 	}
