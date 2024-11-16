@@ -24,6 +24,17 @@ func NewTicketController(service service.TicketService) *TicketController {
 	return &TicketController{service: service}
 }
 
+// Create godoc
+// @Summary      Create a new ticket
+// @Description  Create a new ticket
+// @Tags         tickets
+// @Accept       json
+// @Produce      json
+// @Param        ticket body request.CreateTicketRequest true "ticket"
+// @Success      200  {object}  ticket.TicketDTO
+// @Failure      400  {object}  response.ErrorResponse
+// @Failure      500  {object}  response.ErrorResponse
+// @Router       /ticketsuser [post]
 func (t *TicketController) Create(c echo.Context) error {
 	var req request.CreateTicketRequest
 	if err := c.Bind(&req); err != nil {
@@ -42,6 +53,17 @@ func (t *TicketController) Create(c echo.Context) error {
 	return c.JSON(http.StatusCreated, ticket)
 }
 
+// FindByID godoc
+// @Summary      Find ticket by ID
+// @Description  Find ticket by ID
+// @Tags         tickets
+// @Produce      json
+// @Param        id path int true "ticket ID"
+// @Success      200  {object}  ticket.TicketDTO
+// @Failure      400  {object}  response.ErrorResponse
+// @Failure      404  {object}  response.ErrorResponse
+// @Failure      500  {object}  response.ErrorResponse
+// @Router       /tickets/{id} [get]
 func (t *TicketController) FindByID(c echo.Context) error {
 	id := c.Param("id")
 	if id == "" {
@@ -61,6 +83,19 @@ func (t *TicketController) FindByID(c echo.Context) error {
 	return c.JSON(http.StatusOK, ticket)
 }
 
+// Purchases godoc
+// @Summary      Purchase tickets
+// @Description  Purchase tickets
+// @Tags         tickets
+// @Accept       json
+// @Produce      json
+// @Param        id path int true "ticket ID"
+// @Param        purchase body request.PurchaseTicketRequest true "purchase"
+// @Success      200  {object}  response.EmptyBody "No content"
+// @Failure      400  {object}  response.ErrorResponse
+// @Failure      404  {object}  response.ErrorResponse
+// @Failure      422  {object}  response.ErrorResponse
+// @Router       /tickets/{id}/purchases [post]
 func (t *TicketController) Purchases(c echo.Context) error {
 	var req request.PurchaseTicketRequest
 	if err := c.Bind(&req); err != nil {
