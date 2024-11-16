@@ -54,36 +54,36 @@ $env:INTEGRATION="true"; go test ./... #powershell
 
 
 ### Docker Setup (Recommended)
-1. Build and start the services:
+Build and start the services:
 ```bash
 docker-compose up --build
 ```
 
-2. The API will be available at `http://localhost:{PORT}`
-3. Swagger documentation will be available at `http://localhost:{PORT}/swagger/index.html`
+The API will be available at `http://localhost:{PORT}`
+Swagger documentation will be available at `http://localhost:{PORT}/swagger/index.html`
 
 ### Local Development Setup
-1. Install dependencies:
+Install dependencies:
 ```bash
 go mod download
 ```
 
-2. Generate Swagger documentation (If any changes are made to the API):
+Generate Swagger documentation (If any changes are made to the API):
 ```bash
 go install github.com/swaggo/swag/cmd/swag@latest
 swag init -g ./controller/ticket/ticket.go --parseDependency true
 ```
 
-3. 
-   1. Start the application with `go run` (Copy the `.env` file under `cmd/` folder):
-    ```bash
-    go run cmd/main.go
-    ```
-    2. Start the application with build and run the binary:
-     ```bash
-    go build -o ticket-management-api cmd/main.go
-    ./ticket-management-api
-    ```
+Start the application with `go run` (Copy the `.env` file under `cmd/` folder):
+```bash
+go run cmd/main.go
+```
+Or build and run the application:
+```bash
+go build -o ticket-api cmd/main.go
+./ticket-api
+```
+
 
 ## Example API Calls
 
