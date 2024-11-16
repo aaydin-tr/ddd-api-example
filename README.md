@@ -19,7 +19,7 @@ project/
 ├── controller/               # API Controllers
 ├── docs/                     # API documentation
 ├── domain/                   # Domain models and interfaces
-├── infrastructure/           # Infrastructure Implementations
+├── infrastructure/           # Infrastructure Implementations (Database, Cache, etc.)
 ├── interface/                # Interface Implementations (HTTP, GRPC, etc.)
 ├── mock/                     # Test mocks
 ├── pkg/                      # Shared packages
