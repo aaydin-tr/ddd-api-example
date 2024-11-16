@@ -5,7 +5,7 @@ type TicketDTO struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	Allocation  int    `json:"allocation"`
-}
+} // @Name TicketDTO
 
 func NewTicketDTOFromEntity(ticket *Ticket) *TicketDTO {
 	return &TicketDTO{
