@@ -1,0 +1,163 @@
+definitions:
+  CreateTicketRequest:
+    properties:
+      allocation:
+        minimum: 1
+        type: integer
+      description:
+        type: string
+      name:
+        type: string
+    required:
+    - allocation
+    - description
+    - name
+    type: object
+  EmptyBody:
+    type: object
+  ErrorResponse:
+    properties:
+      errors:
+        items:
+          $ref: '#/definitions/ValidationMessage'
+        type: array
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
+  PurchaseTicketRequest:
+    properties:
+      quantity:
+        minimum: 1
+        type: integer
+      user_id:
+        type: string
+    required:
+    - quantity
+    - user_id
+    type: object
+  TicketDTO:
+    properties:
+      allocation:
+        type: integer
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  ValidationMessage:
+    properties:
+      failed_field:
+        type: string
+      message:
+        type: string
+      tag:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /tickets/{id}:
+    get:
+      description: Find ticket by ID
+      parameters:
+      - description: ticket ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/TicketDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Find ticket by ID
+      tags:
+      - tickets
+  /tickets/{id}/purchases:
+    post:
+      consumes:
+      - application/json
+      description: Purchase tickets
+      parameters:
+      - description: ticket ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: purchase
+        in: body
+        name: purchase
+        required: true
+        schema:
+          $ref: '#/definitions/PurchaseTicketRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: No content
+          schema:
+            $ref: '#/definitions/EmptyBody'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Purchase tickets
+      tags:
+      - tickets
+  /ticketsuser:
+    post:
+      consumes:
+      - application/json
+      description: Create a new ticket
+      parameters:
+      - description: ticket
+        in: body
+        name: ticket
+        required: true
+        schema:
+          $ref: '#/definitions/CreateTicketRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/TicketDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Create a new ticket
+      tags:
+      - tickets
+swagger: "2.0"
