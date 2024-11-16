@@ -35,7 +35,7 @@ project/
 - PostgreSQL (if running locally)
 
 ### Environment Variables
-Create a `.env` file using the `.env.example` file as a template. (Copy the `.env` file under `cmd/` folder if you want to run the application locally)
+Create a `.env` file using the `.env.example` file as a template.
 
 ### Testing
 Run `go generate ./...` to generate the mocks before running any tests.
@@ -74,10 +74,16 @@ go install github.com/swaggo/swag/cmd/swag@latest
 swag init -g ./controller/ticket/ticket.go --parseDependency true
 ```
 
-3. Start the application:
-```bash
-go run cmd/main.go
-```
+3. 
+   1. Start the application with `go run` (Copy the `.env` file under `cmd/` folder):
+    ```bash
+    go run cmd/main.go
+    ```
+    2. Start the application with build and run the binary:
+     ```bash
+    go build -o ticket-management-api cmd/main.go
+    ./ticket-management-api
+    ```
 
 ## Example API Calls
 
