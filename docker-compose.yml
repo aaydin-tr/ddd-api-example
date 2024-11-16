@@ -12,6 +12,10 @@ services:
       - POSTGRES_PORT=${POSTGRES_PORT}
       - POSTGRES_HOST=${POSTGRES_HOST}
       - PORT=${PORT}
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 5s
   db:
     image: postgres:17
     environment:
@@ -21,7 +25,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
