@@ -46,7 +46,7 @@ func TestTicketController_Create(t *testing.T) {
 					Allocation:  100,
 				}, nil)
 			},
-			expectedCode: http.StatusOK,
+			expectedCode: http.StatusCreated,
 		},
 		{
 			name: "bind error",
@@ -145,7 +145,7 @@ func TestTicketController_FindByID(t *testing.T) {
 			mock: func() {
 				mockService.EXPECT().FindByID(gomock.Any(), 1).Return(nil, errors.New("service error"))
 			},
-			expectedCode: http.StatusInternalServerError,
+			expectedCode: http.StatusNotFound,
 		},
 	}
 
