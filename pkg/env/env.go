@@ -14,6 +14,7 @@ type ENV struct {
 	PostgresDB       string `env:"POSTGRES_DB"`
 	PostgresUser     string `env:"POSTGRES_USER"`
 	PostgresPassword string `env:"POSTGRES_PASSWORD"`
+	Host             string `env:"HOST"`
 	Port             string `env:"PORT"`
 }
 

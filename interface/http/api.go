@@ -9,7 +9,7 @@ import (
 	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
-func NewEchoServer(tickectController *ticket.TicketController, port string) {
+func NewEchoServer(tickectController *ticket.TicketController, host, port string) {
 	e := echo.New()
 	e.Validator = validator.New()
 
@@ -18,5 +18,5 @@ func NewEchoServer(tickectController *ticket.TicketController, port string) {
 	e.POST("/tickets/:id/purchases", tickectController.Purchases)
 
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
-	e.Logger.Fatal(e.Start("localhost:" + port))
+	e.Logger.Fatal(e.Start(host + ":" + port))
 }

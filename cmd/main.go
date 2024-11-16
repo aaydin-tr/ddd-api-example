@@ -26,5 +26,5 @@ func main() {
 	service := service.NewTicketService(repo)
 	cont := controller.NewTicketController(service)
 
-	http.NewEchoServer(cont, config.Port)
+	http.NewEchoServer(cont, config.Host, config.Port)
 }
