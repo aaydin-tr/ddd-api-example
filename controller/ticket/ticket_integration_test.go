@@ -161,7 +161,7 @@ func (s *ticketTestSuite) SetupSuite() {
 	err = s.pool.Retry(func() error {
 		var err error
 		intPort, _ := strconv.Atoi(s.resource.GetPort("5432/tcp"))
-		db, err := postgresql.NewPostgresDB("localhost", "postgres", "secret", "ticket", intPort)
+		db, _, err := postgresql.NewPostgresDB("localhost", "postgres", "secret", "ticket", intPort)
 		if err != nil {
 			return err
 		}

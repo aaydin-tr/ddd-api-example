@@ -1,6 +1,12 @@
 package main
 
 import (
+	"context"
+	"log"
+	"os"
+	"os/signal"
+	"syscall"
+
 	controller "github.com/aaydin-tr/gowit-case/controller/ticket"
 	"github.com/aaydin-tr/gowit-case/domain/ticket"
 	"github.com/aaydin-tr/gowit-case/infrastructure/db/postgresql"
@@ -13,7 +19,7 @@ import (
 
 func main() {
 	config := env.ParseEnv()
-	db, err := postgresql.NewPostgresDB(config.PostgresHost, config.PostgresUser, config.PostgresPassword, config.PostgresDB, config.PostgresPort)
+	db, sqlDB, err := postgresql.NewPostgresDB(config.PostgresHost, config.PostgresUser, config.PostgresPassword, config.PostgresDB, config.PostgresPort)
 	if err != nil {
 		panic(err)
 	}
@@ -26,5 +32,23 @@ func main() {
 	service := service.NewTicketService(repo)
 	cont := controller.NewTicketController(service)
 
-	http.NewEchoServer(cont, config.Host, config.Port)
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM, syscall.SIGINT)
+	defer stop()
+
+	svc := http.NewEchoServer(cont, config.Host, config.Port)
+	go svc.Start()
+
+	<-ctx.Done()
+	log.Println("Shutting down the server")
+	if err := svc.Shutdown(); err != nil {
+		panic(err)
+	}
+
+	log.Println("Shutting down the database")
+	if err := sqlDB.Close(); err != nil {
+		panic(err)
+	}
+
+	log.Println("Server and database are down")
+	log.Println("Goodbye!")
 }

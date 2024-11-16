@@ -9,13 +9,13 @@ import (
 )
 
 type ENV struct {
-	PostgresHost     string `env:"POSTGRES_HOST"`
-	PostgresPort     int    `env:"POSTGRES_PORT"`
-	PostgresDB       string `env:"POSTGRES_DB"`
-	PostgresUser     string `env:"POSTGRES_USER"`
-	PostgresPassword string `env:"POSTGRES_PASSWORD"`
-	Host             string `env:"HOST"`
-	Port             string `env:"PORT"`
+	PostgresHost     string `env:"POSTGRES_HOST,required"`
+	PostgresPort     int    `env:"POSTGRES_PORT,required"`
+	PostgresDB       string `env:"POSTGRES_DB,required"`
+	PostgresUser     string `env:"POSTGRES_USER,required"`
+	PostgresPassword string `env:"POSTGRES_PASSWORD,required"`
+	Host             string `env:"HOST,required"`
+	Port             string `env:"PORT,required"`
 }
 
 var doOnce sync.Once
