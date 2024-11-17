@@ -12,6 +12,7 @@ services:
       - POSTGRES_PORT=${POSTGRES_PORT}
       - POSTGRES_HOST=${POSTGRES_HOST}
       - PORT=${PORT}
+      - HOST=${HOST}
     deploy:
       restart_policy:
         condition: any
