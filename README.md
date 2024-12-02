@@ -158,3 +158,4 @@ The API returns standardized error responses with appropriate HTTP status codes:
 - 404: Not Found
 - 422: Unprocessable Entity
 - 500: Internal Server Error
+
