@@ -7,10 +7,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/aaydin-tr/gowit-case/domain/ticket"
-	mockservice "github.com/aaydin-tr/gowit-case/mock/service/ticket"
+	"github.com/aaydin-tr/ddd-api-example/domain/ticket"
+	mockservice "github.com/aaydin-tr/ddd-api-example/mock/service/ticket"
 
-	"github.com/aaydin-tr/gowit-case/pkg/validator"
+	"github.com/aaydin-tr/ddd-api-example/pkg/validator"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"

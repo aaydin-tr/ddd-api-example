@@ -5,10 +5,10 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/aaydin-tr/gowit-case/controller/ticket"
-	"github.com/aaydin-tr/gowit-case/pkg/validator"
+	"github.com/aaydin-tr/ddd-api-example/controller/ticket"
+	"github.com/aaydin-tr/ddd-api-example/pkg/validator"
 
-	_ "github.com/aaydin-tr/gowit-case/docs"
+	_ "github.com/aaydin-tr/ddd-api-example/docs"
 	"github.com/labstack/echo/v4"
 	echoSwagger "github.com/swaggo/echo-swagger"
 )

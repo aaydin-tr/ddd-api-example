@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/aaydin-tr/gowit-case/domain/ticket"
-	"github.com/aaydin-tr/gowit-case/interface/http/request"
-	"github.com/aaydin-tr/gowit-case/interface/http/response"
-	service "github.com/aaydin-tr/gowit-case/service/ticket"
+	"github.com/aaydin-tr/ddd-api-example/domain/ticket"
+	"github.com/aaydin-tr/ddd-api-example/interface/http/request"
+	"github.com/aaydin-tr/ddd-api-example/interface/http/response"
+	service "github.com/aaydin-tr/ddd-api-example/service/ticket"
 	"github.com/labstack/echo/v4"
 )
 

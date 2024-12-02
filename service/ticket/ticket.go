@@ -3,13 +3,13 @@ package service
 import (
 	"context"
 
-	"github.com/aaydin-tr/gowit-case/domain/ticket"
-	"github.com/aaydin-tr/gowit-case/domain/ticket/repository"
-	"github.com/aaydin-tr/gowit-case/infrastructure/db"
-	"github.com/aaydin-tr/gowit-case/interface/http/request"
+	"github.com/aaydin-tr/ddd-api-example/domain/ticket"
+	"github.com/aaydin-tr/ddd-api-example/domain/ticket/repository"
+	"github.com/aaydin-tr/ddd-api-example/infrastructure/db"
+	"github.com/aaydin-tr/ddd-api-example/interface/http/request"
 )
 
-//go:generate mockgen -destination=../../mock/service/ticket/ticket.go -package=service github.com/aaydin-tr/gowit-case/service/ticket TicketService
+//go:generate mockgen -destination=../../mock/service/ticket/ticket.go -package=service github.com/aaydin-tr/ddd-api-example/service/ticket TicketService
 type TicketService interface {
 	Create(ctx context.Context, req request.CreateTicketRequest) (*ticket.TicketDTO, error)
 	FindByID(ctx context.Context, id int) (*ticket.TicketDTO, error)

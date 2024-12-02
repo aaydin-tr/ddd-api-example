@@ -4,12 +4,12 @@ import (
 	"context"
 	"errors"
 
-	"github.com/aaydin-tr/gowit-case/domain/ticket"
+	"github.com/aaydin-tr/ddd-api-example/domain/ticket"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
-//go:generate mockgen -destination=../../../mock/repository/ticket/ticket.go -package=repository github.com/aaydin-tr/gowit-case/domain/ticket/repository TicketRepository
+//go:generate mockgen -destination=../../../mock/repository/ticket/ticket.go -package=repository github.com/aaydin-tr/ddd-api-example/domain/ticket/repository TicketRepository
 type TicketRepository interface {
 	GetDB(ctx context.Context) *gorm.DB
 	Create(ctx context.Context, t *ticket.Ticket) error

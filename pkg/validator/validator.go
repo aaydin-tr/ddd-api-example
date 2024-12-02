@@ -3,7 +3,7 @@ package validator
 import (
 	"net/http"
 
-	"github.com/aaydin-tr/gowit-case/interface/http/response"
+	"github.com/aaydin-tr/ddd-api-example/interface/http/response"
 	"github.com/go-playground/validator/v10"
 )
 

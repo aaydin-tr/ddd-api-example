@@ -1,4 +1,4 @@
-module github.com/aaydin-tr/gowit-case
+module github.com/aaydin-tr/ddd-api-example
 
 go 1.22.0
 

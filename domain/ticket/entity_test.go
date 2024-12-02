@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/aaydin-tr/gowit-case/domain/ticket"
+	"github.com/aaydin-tr/ddd-api-example/domain/ticket"
 	"github.com/stretchr/testify/assert"
 )
 

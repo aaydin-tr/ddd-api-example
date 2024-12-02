@@ -7,14 +7,14 @@ import (
 	"os/signal"
 	"syscall"
 
-	controller "github.com/aaydin-tr/gowit-case/controller/ticket"
-	"github.com/aaydin-tr/gowit-case/domain/ticket"
-	"github.com/aaydin-tr/gowit-case/infrastructure/db/postgresql"
-	"github.com/aaydin-tr/gowit-case/interface/http"
+	controller "github.com/aaydin-tr/ddd-api-example/controller/ticket"
+	"github.com/aaydin-tr/ddd-api-example/domain/ticket"
+	"github.com/aaydin-tr/ddd-api-example/infrastructure/db/postgresql"
+	"github.com/aaydin-tr/ddd-api-example/interface/http"
 
-	"github.com/aaydin-tr/gowit-case/domain/ticket/repository"
-	"github.com/aaydin-tr/gowit-case/pkg/env"
-	service "github.com/aaydin-tr/gowit-case/service/ticket"
+	"github.com/aaydin-tr/ddd-api-example/domain/ticket/repository"
+	"github.com/aaydin-tr/ddd-api-example/pkg/env"
+	service "github.com/aaydin-tr/ddd-api-example/service/ticket"
 )
 
 func main() {

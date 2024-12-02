@@ -3,7 +3,7 @@ package ticket
 import (
 	"testing"
 
-	"github.com/aaydin-tr/gowit-case/valueobject"
+	"github.com/aaydin-tr/ddd-api-example/valueobject"
 	"github.com/stretchr/testify/assert"
 )
 

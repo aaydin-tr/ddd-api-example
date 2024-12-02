@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/aaydin-tr/gowit-case/interface/http/response"
+	"github.com/aaydin-tr/ddd-api-example/interface/http/response"
 	"github.com/stretchr/testify/assert"
 )
 

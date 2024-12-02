@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/aaydin-tr/gowit-case/valueobject"
+	"github.com/aaydin-tr/ddd-api-example/valueobject"
 	"gorm.io/gorm"
 )
 
